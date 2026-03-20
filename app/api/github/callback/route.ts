@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { supabaseAdmin } from "@/lib/supabase/admin";
+import { getSupabaseAdmin } from "@/lib/supabase/admin";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -47,7 +47,8 @@ export async function GET(request: Request) {
 
   const ghUser = await userRes.json();
 
-  await supabaseAdmin.from("github_accounts").upsert(
+  const admin = getSupabaseAdmin();
+  await admin.from("github_accounts").upsert(
     {
       user_id: user.id,
       github_user_id: ghUser.id,

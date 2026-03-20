@@ -94,7 +94,7 @@ export function BoardView({
         ? [...grouped[targetStatus]]
         : [...grouped[targetStatus]];
 
-    const sourceIndex = sourceItems.findIndex((i) => i.id === activeIssue.id);
+    const _sourceIndex = sourceItems.findIndex((i) => i.id === activeIssue.id);
     let targetIndex = targetItems.length;
 
     if (!BOARD_COLUMNS.some((c) => c.id === overId)) {
